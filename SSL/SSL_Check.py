@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 #   File:       SSL_Check.py
 #   Created by: jocker2410
 #   Created:    2023/05/23 14:05:24 by jocker2410
@@ -56,7 +54,11 @@ def clear_screen():
   else:
     os.system("clear")
 
-websites = ["imkerei-herzog", "phalanx-it.de", "exploit.in", "zoomeye.org", "google.de", "github.com"]
-clear_screen()
-ssl_checker = GetSSL(websites)
-ssl_checker.check_ssl()
+def main():
+    websites = ["imkerei-herzog", "phalanx-it.de", "exploit.in", "zoomeye.org", "google.de", "github.com"]
+    clear_screen()
+    ssl_checker = GetSSL(websites)
+    ssl_checker.check_ssl()
+
+if __name__ == '__main__':
+    main()
