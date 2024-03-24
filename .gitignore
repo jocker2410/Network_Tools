@@ -260,6 +260,7 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
+.gitignore
 
 # SQL Server files
 *.mdf
