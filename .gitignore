@@ -261,7 +261,7 @@ UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
 .gitignore
-
+Use_Proxy/
 # SQL Server files
 *.mdf
 *.ldf
