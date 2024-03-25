@@ -15,7 +15,12 @@ def _close():
 def connect_site(url, timestamp):
     print(Fore.LIGHTBLUE_EX + f"[+] Try Connection to {url}")
     _close()
-    conn = urllib.request.urlopen('https://' + url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'
+    }
+
+    req = urllib.request.Request('https://' + url, headers=headers)
+    conn = urllib.request.urlopen(req)
     _close()
     print(Fore.GREEN + f"[+] Connection was successful, with response {conn.code}")
     _close()
@@ -85,7 +90,7 @@ def main():
     while True:
         for url in urls:
             uptime(url)
-        time.sleep(15.5)
+        time.sleep(8.5)
 
 if __name__ == '__main__':
     main()
