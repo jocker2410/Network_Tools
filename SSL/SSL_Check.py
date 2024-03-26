@@ -55,7 +55,7 @@ def clear_screen():
     os.system("clear")
 
 def main():
-    websites = ["imkerei-herzog", "phalanx-it.de", "exploit.in", "zoomeye.org", "google.de", "github.com"]
+    websites = ["vpn.phalanx-it.de"]
     clear_screen()
     ssl_checker = GetSSL(websites)
     ssl_checker.check_ssl()
