@@ -10,5 +10,3 @@ These scripts are intended to monitor your own systems. Please do not use them f
 ```
 
 🔗 In the future, more and more scripts will be published here that can make your everyday life easier 🔗
-
-

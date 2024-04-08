@@ -30,16 +30,19 @@ def response_handling(url, response):
     if response.status_code >= 200 and response.status_code < 300:
         msg = f"{timestamp}\tSuccessful code {response.status_code}\tURL:\t{url}\n"
         print(Fore.GREEN, msg)
+        write_status(url, msg)
     elif response.status_code >= 300 and response.status_code < 400:
         msg = f"{timestamp}\tHTTPError:\t{response.status_code}\tURL: {url}\n"
         print(Fore.YELLOW, msg)
+        write_status(url, msg)
     elif response.status_code >= 400 and response.status_code < 500:
         msg = f"{timestamp}\tClient error: {response.status_code}\tURL: {url}\n"
         print(Fore.RED, msg)
+        write_status(url, msg)
     else:
         msg = f"{timestamp}\tServer error: {response.status_code}\tURL: {url}\n"
         print(Fore.RED, msg)
-    write_status(url, msg)
+        write_status(url, msg)
 
 def uptime(url):
     try:

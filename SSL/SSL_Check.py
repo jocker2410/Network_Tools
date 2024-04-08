@@ -1,7 +1,7 @@
 #   File:       SSL_Check.py
 #   Created by: jocker2410
 #   Created:    2023/05/23 14:05:24 by jocker2410
-#   Updated:    2024/03/24 15:25:14 by jocker2410
+#   Updated:    2024/04/08 09:25:14 by jocker2410
 
 import os, ssl, socket
 from datetime import datetime
@@ -30,23 +30,30 @@ class GetSSL:
         print(f"{Fore.GREEN}[+] {msg}{Style.RESET_ALL}")
 
     def _p_red(self, msg):
-        print(f"{Fore.RED}[+] {msg}{Style.RESET_ALL}")
+        print(f"{Fore.RED}[-] {msg}{Style.RESET_ALL}")
 
     def _p_yellow(self, msg):
-        print(f"{Fore.YELLOW}[+] {msg}{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}[!] {msg}{Style.RESET_ALL}")
+    def _p_magenta(self, msg):
+        print(f"{Fore.MAGENTA}[+] {msg}{Style.RESET_ALL}")
 
     def check_ssl(self):
         print("")
         for website in self.websites:
             cert_not_after, exp_days = self._get_cert_info(website)
-            self._p_yellow(f"[!] Check Site \t-->\t\t{website}")
-
-            if cert_not_after and exp_days:
-                self._p_green(f"Vakud until: \t\t\t{cert_not_after}")
-                self._p_green(f"Valid for: \t\t\t\t{exp_days} days")
+            self._p_magenta(f"Check Site \t-->\t\t{website}")
+            if not isinstance(exp_days, int):
+                self._p_red(f"Certificate for {website} cannot be verified!")
+            elif cert_not_after and exp_days and exp_days > 20:
+                self._p_green(f"Valid until:\t\t\t{cert_not_after} ")
+                self._p_green(f"Valid for:\t\t\t\t{exp_days} days ")
+            elif exp_days < 15:
+                self._p_yellow(f"Valid until:\t\t\t{cert_not_after}")
+                self._p_yellow(f"Valid for:\t\t\t\t{exp_days} days")
 
             else:
-                self._p_red("[-] Certificate could not be verified!")
+                self._p_red("Something went wrong, please check the debu!")
+            Style.RESET_ALL
             print()
 def clear_screen():
   if os.name == "nt":
@@ -55,7 +62,7 @@ def clear_screen():
     os.system("clear")
 
 def main():
-    websites = ["vpn.phalanx-it.de"]
+    websites = ["eval.testdom.com", "sploitus.com", "exploit-db.com", "vscode.dev", "perplexity.ai"]
     clear_screen()
     ssl_checker = GetSSL(websites)
     ssl_checker.check_ssl()
