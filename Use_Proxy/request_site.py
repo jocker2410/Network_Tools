@@ -23,7 +23,6 @@ def req_site(session, url):
 
 def main():
 
-
     # print hidden ip
     #try_Tor(get_tor_session())
 
